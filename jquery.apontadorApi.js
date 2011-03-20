@@ -47,6 +47,7 @@
 				
 				return true;
 			},
+			
 			getPlaces : function( params, callback ) {
 				
 				if ( typeof params !== 'object' ) { return false; }
