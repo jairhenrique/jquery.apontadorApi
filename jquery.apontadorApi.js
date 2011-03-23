@@ -12,58 +12,51 @@
 		};
 		
 		var _methods = {
-			
 			doRequest : function ( url, params, callback ) {
 				
-				$.getJSON( url, params, function ( data ) {
-					if( typeof callback === 'function' ) {
-						callback(data);
-			        }
-				});
-				
-			},
-			
-			hasCallback : function ( callback ) {
 				if( typeof callback === 'function' ) {
-					return true;
-		        }
-				return false;
+					var jqxhr = $.getJSON( url, params, function ( data ) {
+						callback(data);
+					});
+				} else {
+					return false;
+				}	
+				
+				return jqxhr;
 			}
-			
 		};
 		
 		var methods = {
-			getSugestions : function( params, callback ) {
-				
+			getPlacesByPois : function( params, callback ) {
 				if ( typeof params !== 'object' ) { return false; }
-
 				var p = $.extend({}, params, _confBase);
-				
-				if ( _methods.hasCallback( callback ) ) {
-					_methods.doRequest("https://api.apontador.com.br/v1/suggestions?callback=?", p, callback );
-				} else {
-					return false;
-				}
-				
-				return true;
+				return _methods.doRequest("https://api.apontador.com.br/v1/search/places/bypoint?callback=?", p, callback );
 			},
-			
-			getPlaces : function( params, callback ) {
-				
+			getPlacesByAddress : function( params, callback ) {
 				if ( typeof params !== 'object' ) { return false; }
-				
 				var p = $.extend({}, params, _confBase);
-				
-				if ( _methods.hasCallback( callback ) ) {
-					_methods.doRequest("https://api.apontador.com.br/v1/search/places?callback=?", p, callback );
-				} else {
-					return false;
-				}
-				
-				return true;
+				return _methods.doRequest("https://api.apontador.com.br/v1/search/places/byaddress?callback=?", p, callback );
+			},
+			getPlacesByZipCode : function( params, callback ) {
+				if ( typeof params !== 'object' ) { return false; }
+				var p = $.extend({}, params, _confBase);
+				return _methods.doRequest("https://api.apontador.com.br/v1/search/places/byzipcode?callback=?", p, callback );
+			},
+			getPlacesByBox : function( params, callback ) {
+				if ( typeof params !== 'object' ) { return false; }
+				var p = $.extend({}, params, _confBase);
+				return _methods.doRequest("https://api.apontador.com.br/v1/search/places/bybox?callback=?", p, callback );
+			},
+			getPlaces : function( params, callback ) {
+				if ( typeof params !== 'object' ) { return false; }
+				var p = $.extend({}, params, _confBase);
+				return _methods.doRequest("https://api.apontador.com.br/v1/search/places?callback=?", p, callback );
+			},
+			getSugestions : function( params, callback ) {
+				if ( typeof params !== 'object' ) { return false; }
+				var p = $.extend({}, params, _confBase);
+				return _methods.doRequest("https://api.apontador.com.br/v1/suggestions?callback=?", p, callback );
 			}
-			
-			
 		};
 		
 		return methods;
