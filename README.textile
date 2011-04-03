@@ -3,7 +3,7 @@ h1. Plugin jQuery para a API do Apontador
 
 Modo de usar:
 
-@var api = new apontadorApi('sua_consumer_key');
-api.getPlaces({'q' : 'Uziel' }, function(data){
-console.log(data);
-})@
+@var api = new apontadorApi('sua_consumer_key');@
+@api.getPlaces({'q' : 'Uziel' }, function(data){@
+@console.log(data);@
+@})@
