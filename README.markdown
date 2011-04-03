@@ -3,7 +3,7 @@
 
 ##Modo de usar:
 
-var api = new apontadorApi('sua_consumer_key');
+`var api = new apontadorApi('sua_consumer_key');
 api.getPlaces({'q' : 'Uziel' }, function(data){
     console.log(data);
-});
+});`
